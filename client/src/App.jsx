@@ -30,16 +30,16 @@ if(authToken) {
 
 const App = () => {
     const [createType, setCreateType] = useState('');
-    //is user creating new chat
+        //is user creating new chat
     const [isCreating, setIsCreating] = useState(false);
-    //is user editing a chatroom
+        //is user editing a chatroom
     const [isEditing, setIsEditing] = useState(false);
 
     if(!authToken) return <Auth />
-    
+
     return (
         <div className="app__wrapper">
-            <Chat>
+            <Chat client={client} theme="team light">
                 <ChannelListContainer 
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
@@ -58,4 +58,4 @@ const App = () => {
     );
 }
 
-export default App
+export default App;

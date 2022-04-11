@@ -17,24 +17,24 @@ const initialState = {
 
 const Auth = () => {
     const [form, setForm] = useState(initialState);
-    
-    //are we in sign in form or sign up form
     const [isSignup, setIsSignup] = useState(true);
-    
+
     const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-        const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         const { username, password, phoneNumber, avatarURL } = form;
 
         const URL = 'http://localhost:5000/auth';
+
         //form.fullname fix because id was coming up.
         const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
             username, password, fullName: form.fullName, phoneNumber, avatarURL,
         });
-        //adding to the browsers cookies
+
         cookies.set('token', token);
         cookies.set('username', username);
         cookies.set('fullName', fullName);
@@ -49,7 +49,7 @@ const Auth = () => {
         window.location.reload();
     }
 
-    //to switch between sign in and sign up
+        //to switch between sign in and sign up
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
     }
