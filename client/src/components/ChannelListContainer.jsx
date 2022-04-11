@@ -25,7 +25,7 @@ const CompanyHeader = () => (
         <p className="channel-list__header__text">Food Chat App</p>
     </div>
 )
-
+//stream allows me to get a channel list component out the box, still need to create custom list. 
 const ChannelListContainer = ({ }) => {
 
     return (
@@ -34,6 +34,15 @@ const ChannelListContainer = ({ }) => {
             <div className="channel-list__list__wrapper">
             <CompanyHeader />
             <ChannelSearch />
+            <ChannelList 
+                    filters={{}}
+                    channelRenderFilterFn={()=>{}}
+                    List={(listProps) => (
+                        <TeamChannelList 
+                            {...listProps}
+                        />
+                    )}          
+            />
             </div>
         </>
     )
