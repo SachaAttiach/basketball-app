@@ -24,6 +24,11 @@ const Auth = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
     }
 
+        const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(form)
+    }
+
     //to switch between sign in and sign up
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
