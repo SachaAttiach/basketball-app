@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Avatar, useChatContext } from 'stream-chat-react';
 
 import { InviteIcon } from '../assets';
+
+
 //userlist is for adding users to chat
-
-
 const ListContainer = ({ children }) => {
     return (
         <div className="user-list__container">
@@ -29,6 +29,7 @@ const UserItem = ({ user, setSelectedUsers }) => {
 
         setSelected((prevSelected) => !prevSelected)
     }
+
     return (
         <div className="user-item__wrapper" onClick={handleSelect}>
             <div className="user-item__name-wrapper">
@@ -40,6 +41,7 @@ const UserItem = ({ user, setSelectedUsers }) => {
     )
 }
 
+
 const UserList = ({ setSelectedUsers }) => {
     const { client } = useChatContext();
     const [users, setUsers] = useState([]);
@@ -47,12 +49,12 @@ const UserList = ({ setSelectedUsers }) => {
     const [listEmpty, setListEmpty] = useState(false);
     const [error, setError] = useState(false);
 
-
-        useEffect(() => {
+    useEffect(() => {
         const getUsers = async () => {
             if(loading) return;
-            setLoading(true);
 
+            setLoading(true);
+            
             try {
                 //$ne is not equal to, we dont want to find ourselves. limiting user list in sorting to 8 users.
                 const response = await client.queryUsers(
@@ -71,11 +73,11 @@ const UserList = ({ setSelectedUsers }) => {
             }
             setLoading(false);
         }
-        //if we're connected then get all users function
+
         if(client) getUsers()
     }, []);
 
-        if(error) {
+    if(error) {
         return (
             <ListContainer>
                 <div className="user-list__message">
@@ -85,7 +87,7 @@ const UserList = ({ setSelectedUsers }) => {
         )
     }
 
-        if(listEmpty) {
+    if(listEmpty) {
         return (
             <ListContainer>
                 <div className="user-list__message">
@@ -94,7 +96,7 @@ const UserList = ({ setSelectedUsers }) => {
             </ListContainer>
         )
     }
-    //if there are users in the list and no errors then finally we get this:
+
     return (
         <ListContainer>
             {loading ? <div className="user-list__message">

@@ -13,7 +13,7 @@ const TeamChannelList = ({ setToggleContainer, children, error = false, loading,
                 </p>
             </div>
         ) : null
-    }   
+    }
 
     if(loading) {
         return (

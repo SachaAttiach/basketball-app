@@ -5,9 +5,9 @@ import { ResultsDropdown } from './'
 import { SearchIcon } from '../assets';
 
 const ChannelSearch = ({ setToggleContainer }) => {
+    const { client, setActiveChannel } = useChatContext();
     const [query, setQuery] = useState('');
     const [loading, setLoading] = useState(false);
-    const { client, setActiveChannel } = useChatContext();
     const [teamChannels, setTeamChannels] = useState([])
     const [directChannels, setDirectChannels] = useState([])
 
@@ -17,13 +17,6 @@ const ChannelSearch = ({ setToggleContainer }) => {
             setDirectChannels([]);
         }
     }, [query])
-
-    const onSearch = (event) => {
-        event.preventDefault();
-        setLoading(true);
-        setQuery(event.target.value);
-        getChannels(event.target.value)
-    }
 
     const getChannels = async (text) => {
         try {
@@ -37,7 +30,6 @@ const ChannelSearch = ({ setToggleContainer }) => {
                 name: { $autocomplete: text }
             })
 
-            //want to start fetching channels at the same time so promise.all
             const [channels, { users }] = await Promise.all([channelResponse, userResponse]);
 
             if(channels.length) setTeamChannels(channels);
@@ -45,6 +37,14 @@ const ChannelSearch = ({ setToggleContainer }) => {
         } catch (error) {
             setQuery('')
         }
+    }
+
+    const onSearch = (event) => {
+        event.preventDefault();
+
+        setLoading(true);
+        setQuery(event.target.value);
+        getChannels(event.target.value)
     }
 
     const setChannel = (channel) => {
@@ -66,7 +66,7 @@ const ChannelSearch = ({ setToggleContainer }) => {
                     onChange={onSearch}
                 />
             </div>
-                { query && (
+            { query && (
                 <ResultsDropdown 
                     teamChannels={teamChannels}
                     directChannels={directChannels}

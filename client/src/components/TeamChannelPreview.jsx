@@ -1,12 +1,10 @@
 import React from 'react';
 import { Avatar, useChatContext } from 'stream-chat-react';
 
-const TeamChannelPreview = ({channel, type}) => {
-  // from stream
+const TeamChannelPreview = ({ setActiveChannel, setIsCreating, setIsEditing, setToggleContainer, channel, type }) => {
     const { channel: activeChannel, client } = useChatContext();
 
-    //channel for group chat
-        const ChannelPreview = () => (
+    const ChannelPreview = () => (
         <p className="channel-preview__item">
             Write channel name {channel?.data?.name || channel?.data?.id}
         </p>
@@ -30,17 +28,23 @@ const TeamChannelPreview = ({channel, type}) => {
             </div>
         )
     }
-// diff classname depending on if current chat is selected or not
+
     return (
         <div className={
             channel?.id === activeChannel?.id
                 ? 'channel-preview__wrapper__selected'
                 : 'channel-preview__wrapper'
-        }        
+        }
         onClick={() => {
-            console.log(channel)
-        }}>
-        {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
+            setIsCreating(false);
+            setIsEditing(false);
+            setActiveChannel(channel);
+            if(setToggleContainer) {
+                setToggleContainer((prevState) => !prevState)
+            }
+        }}
+        >
+            {type === 'team' ? <ChannelPreview /> : <DirectPreview />}
         </div>
     );
 }

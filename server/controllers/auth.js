@@ -21,14 +21,9 @@ const signup = async (req, res) => {
 
     const token = serverClient.createUserToken(userId);
 
-    res.status(200).json({
-      token,
-      fullName,
-      username,
-      userId,
-      hashedPassword,
-      phoneNumber,
-    });
+    res
+      .status(200)
+      .json({ token, fullName, username, userId, hashedPassword, phoneNumber });
   } catch (error) {
     console.log(error);
 
@@ -39,6 +34,7 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
+
     const serverClient = connect(api_key, api_secret, app_id);
     const client = StreamChat.getInstance(api_key, api_secret);
 
@@ -62,7 +58,9 @@ const login = async (req, res) => {
       res.status(500).json({ message: "Incorrect password" });
     }
   } catch (error) {
+    ads;
     console.log(error);
+
     res.status(500).json({ message: error });
   }
 };
