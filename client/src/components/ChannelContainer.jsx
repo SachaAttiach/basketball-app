@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Channel, MessageTeam } from 'stream-chat-react';
 
 import { ChannelInner, CreateChannel, EditChannel } from './';
+import { Context } from '../Context';
 
-const ChannelContainer = ({ isCreating, setIsCreating, isEditing, setIsEditing, createType }) => {
+const ChannelContainer = () => {
+      const { isCreating, isEditing } = useContext(Context);
+
     if(isCreating) {
         return (
             <div className="channel__container">
-                <CreateChannel createType={createType} setIsCreating={setIsCreating} />
+                <CreateChannel />
             </div>
         )
     }
@@ -15,7 +18,7 @@ const ChannelContainer = ({ isCreating, setIsCreating, isEditing, setIsEditing, 
     if(isEditing) {
         return (
             <div className="channel__container">
-                <EditChannel setIsEditing={setIsEditing} />
+                <EditChannel />
             </div> 
         )
     }
@@ -33,7 +36,7 @@ const ChannelContainer = ({ isCreating, setIsCreating, isEditing, setIsEditing, 
                 EmptyStateIndicator={EmptyState}
                 Message={(messageProps, i) => <MessageTeam key={i} {...messageProps} />}
             >
-                <ChannelInner setIsEditing={setIsEditing} />
+                <ChannelInner />
             </Channel>
         </div>
     );

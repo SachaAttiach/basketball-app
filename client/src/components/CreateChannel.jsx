@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useChatContext } from 'stream-chat-react';
 
 import { UserList } from './';
 import { CloseCreateChannel } from '../assets';
+import { Context } from '../Context';
 
 const ChannelNameInput = ({ channelName = '', setChannelName }) => {
     const handleChange = (event) => {
@@ -20,8 +21,9 @@ const ChannelNameInput = ({ channelName = '', setChannelName }) => {
     )
 }
 
-const CreateChannel = ({ createType, setIsCreating }) => {
+const CreateChannel = () => {
     const { client, setActiveChannel } = useChatContext();
+    const { setIsCreating, createType } = useContext(Context);
     const [selectedUsers, setSelectedUsers] = useState([client.userID || ''])
     const [channelName, setChannelName] = useState('');
 

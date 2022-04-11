@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { AddChannel } from '../assets';
+import { Context } from '../Context';
 
 
-const TeamChannelList = ({ setToggleContainer, children, error = false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing }) => {
+const TeamChannelList = ({ setToggleContainer, children, error = false, loading, type }) => {
+       const { isCreating, setIsCreating, setCreateType, setIsEditing } = useContext(Context);
     if(error) {
         return type === 'team' ? (
             <div className="team-channel-list">

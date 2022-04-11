@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar, useChatContext } from 'stream-chat-react';
+import { Context } from '../Context';
 
-const TeamChannelPreview = ({ setActiveChannel, setIsCreating, setIsEditing, setToggleContainer, channel, type }) => {
+const TeamChannelPreview = ({ setActiveChannel, setToggleContainer, channel, type }) => {
     const { channel: activeChannel, client } = useChatContext();
+        const { setIsCreating, setIsEditing, } = useContext(Context);
 
     const ChannelPreview = () => (
         <p className="channel-preview__item">
