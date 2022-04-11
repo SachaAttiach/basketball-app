@@ -22,6 +22,8 @@ const ChannelNameInput = ({ channelName = '', setChannelName }) => {
 
 const CreateChannel = () => {
     const [channelName, setChannelName] = useState('');
+    const { client, setActiveChannel } = useChatContext();
+    const [selectedUsers, setSelectedUsers] = useState([client.userID || ''])
 
     return (
         <div className="create-channel__container">

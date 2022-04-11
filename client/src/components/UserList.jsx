@@ -18,6 +18,17 @@ const ListContainer = ({ children }) => {
 }
 
 const UserItem = ({user}) => {
+    const [selected, setSelected] = useState(false)
+    //keeping selected users
+    const handleSelect = () => {
+        if(selected) {
+            setSelectedUsers((prevUsers) => prevUsers.filter((prevUser) => prevUser !== user.id))
+        } else {
+            setSelectedUsers((prevUsers) => [...prevUsers, user.id])
+        }
+
+        setSelected((prevSelected) => !prevSelected)
+    }
     return (
         <div className="user-item__wrapper" onClick={handleSelect}>
             <div className="user-item__name-wrapper">
@@ -33,7 +44,7 @@ const UserList = () => {
     const { client } = useChatContext();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
-        const [listEmpty, setListEmpty] = useState(false);
+    const [listEmpty, setListEmpty] = useState(false);
 
 
         useEffect(() => {
