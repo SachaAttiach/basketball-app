@@ -4,7 +4,7 @@ import { AddChannel } from '../assets';
 
 //type refers to if we're in private chat or group messages
 
-const TeamChannelList = ({children, error = false, loading, type}) => {
+const TeamChannelList = ({ setToggleContainer, children, error = false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing }) => {
     if(error) {
         return type === 'team' ? (
             <div className="team-channel-list">

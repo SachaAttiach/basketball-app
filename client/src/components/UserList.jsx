@@ -17,9 +17,9 @@ const ListContainer = ({ children }) => {
     )
 }
 
-const UserItem = ({user}) => {
+const UserItem = ({ user, setSelectedUsers }) => {
     const [selected, setSelected] = useState(false)
-    //keeping selected users
+    //for selecting users
     const handleSelect = () => {
         if(selected) {
             setSelectedUsers((prevUsers) => prevUsers.filter((prevUser) => prevUser !== user.id))
@@ -40,7 +40,7 @@ const UserItem = ({user}) => {
     )
 }
 
-const UserList = () => {
+const UserList = ({ setSelectedUsers }) => {
     const { client } = useChatContext();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);

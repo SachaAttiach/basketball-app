@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useChatContext } from 'stream-chat-react';
 
+import { ResultsDropdown } from './'
 import { SearchIcon } from '../assets';
 
-const ChannelSearch = () => {
+const ChannelSearch = ({ setToggleContainer }) => {
     const [query, setQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const { client, setActiveChannel } = useChatContext();

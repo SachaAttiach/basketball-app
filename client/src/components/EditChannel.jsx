@@ -20,6 +20,11 @@ const ChannelNameInput = ({ channelName = '', setChannelName }) => {
     )
 }
 
+const EditChannel = ({ setIsEditing }) => {
+    const { channel } = useChatContext();
+    const [channelName, setChannelName] = useState(channel?.data?.name);
+    const [selectedUsers, setSelectedUsers] = useState([])
+
     const updateChannel = async (event) => {
         event.preventDefault();
 
@@ -38,10 +43,6 @@ const ChannelNameInput = ({ channelName = '', setChannelName }) => {
         setSelectedUsers([]);
     }
 
-const EditChannel = () => {
-    const { channel } = useChatContext();
-    const [channelName, setChannelName] = useState(channel?.data?.name);
-    const [selectedUsers, setSelectedUsers] = useState([])
     return (
         <div className="edit-channel__container">
             <div className="edit-channel__header">
