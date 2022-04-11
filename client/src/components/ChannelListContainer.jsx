@@ -28,7 +28,7 @@ const CompanyHeader = () => (
     </div>
 )
 //stream allows me to get a channel list component out the box, still need to create custom list. 
-const ChannelListContainer = ({ }) => {
+const ChannelListContainer = ({ setCreateType, setIsCreating, setIsEditing }) => {
 
     const logout = () => {
         cookies.remove("token");
@@ -55,11 +55,20 @@ const ChannelListContainer = ({ }) => {
                         <TeamChannelList 
                             {...listProps}
                             type="team"
+                            isCreating={isCreating}
+                            setIsCreating={setIsCreating}
+                            setCreateType={setCreateType} 
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}
                         />
                     )}
                     Preview={(previewProps) => (
                         <TeamChannelPreview 
                             {...previewProps}
+                            {...previewProps}
+                            setIsCreating={setIsCreating}
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}
                             type="team"
                         />
                     )}          
@@ -72,6 +81,11 @@ const ChannelListContainer = ({ }) => {
                         <TeamChannelList 
                             {...listProps}
                             type="messaging"
+                            isCreating={isCreating}
+                            setIsCreating={setIsCreating}
+                            setCreateType={setCreateType} 
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}                            
 
                         />
                     )}
@@ -79,6 +93,10 @@ const ChannelListContainer = ({ }) => {
                         <TeamChannelPreview 
                             {...previewProps}
                             type="messaging"
+                            setIsCreating={setIsCreating}
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}
+                          
                         />
                     )}
                 />
