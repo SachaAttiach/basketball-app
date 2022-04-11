@@ -14,6 +14,14 @@ const ChannelSearch = () => {
         getChannels(event.target.value)
     }
 
+    const getChannels = async () => {
+        try {
+           //fetch channels 
+        } catch (error) {
+            setQuery("")
+        }
+    }
+
     return (
         <div className="channel-search__container">
             <div className="channel-search__input__wrapper">
