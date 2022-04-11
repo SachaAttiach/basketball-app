@@ -45,6 +45,7 @@ const UserList = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [listEmpty, setListEmpty] = useState(false);
+    const [error, setError] = useState(false);
 
 
         useEffect(() => {
@@ -73,7 +74,27 @@ const UserList = () => {
         //if we're connected then get all users function
         if(client) getUsers()
     }, []);
-    
+
+        if(error) {
+        return (
+            <ListContainer>
+                <div className="user-list__message">
+                    Error loading, please refresh and try again.
+                </div>
+            </ListContainer>
+        )
+    }
+
+        if(listEmpty) {
+        return (
+            <ListContainer>
+                <div className="user-list__message">
+                    No users found.
+                </div>
+            </ListContainer>
+        )
+    }
+    //if there are users in the list and no errors then finally we get this:
     return (
         <ListContainer>
             {loading ? <div className="user-list__message">
