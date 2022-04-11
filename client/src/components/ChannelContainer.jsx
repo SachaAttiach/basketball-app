@@ -19,8 +19,6 @@ const ChannelContainer = ({ isCreating, setIsCreating, isEditing, setIsEditing, 
             </div> 
         )
     }
-
-        //chat with no messages yet:
         
     const EmptyState = () => (
         <div className="channel-empty__container">

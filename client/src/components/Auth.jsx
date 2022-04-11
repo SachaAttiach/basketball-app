@@ -30,7 +30,6 @@ const Auth = () => {
 
         const URL = 'http://localhost:5000/auth';
 
-        //form.fullname fix because id was coming up.
         const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
             username, password, fullName: form.fullName, phoneNumber, avatarURL,
         });
@@ -45,11 +44,9 @@ const Auth = () => {
             cookies.set('avatarURL', avatarURL);
             cookies.set('hashedPassword', hashedPassword);
         }
-        //reload the app to fill the auth token, means we wont hit <Auth> again. 
         window.location.reload();
     }
 
-        //to switch between sign in and sign up
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
     }

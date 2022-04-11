@@ -30,9 +30,7 @@ if(authToken) {
 
 const App = () => {
     const [createType, setCreateType] = useState('');
-        //is user creating new chat
     const [isCreating, setIsCreating] = useState(false);
-        //is user editing a chatroom
     const [isEditing, setIsEditing] = useState(false);
 
     if(!authToken) return <Auth />

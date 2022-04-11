@@ -3,8 +3,6 @@ import { Avatar, useChatContext } from 'stream-chat-react';
 
 import { InviteIcon } from '../assets';
 
-
-//userlist is for adding users to chat
 const ListContainer = ({ children }) => {
     return (
         <div className="user-list__container">
@@ -19,7 +17,6 @@ const ListContainer = ({ children }) => {
 
 const UserItem = ({ user, setSelectedUsers }) => {
     const [selected, setSelected] = useState(false)
-    //for selecting users
     const handleSelect = () => {
         if(selected) {
             setSelectedUsers((prevUsers) => prevUsers.filter((prevUser) => prevUser !== user.id))
@@ -56,7 +53,6 @@ const UserList = ({ setSelectedUsers }) => {
             setLoading(true);
             
             try {
-                //$ne is not equal to, we dont want to find ourselves. limiting user list in sorting to 8 users.
                 const response = await client.queryUsers(
                     { id: { $ne: client.userID } },
                     { id: 1 },

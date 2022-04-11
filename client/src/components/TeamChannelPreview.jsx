@@ -10,8 +10,6 @@ const TeamChannelPreview = ({ setActiveChannel, setIsCreating, setIsEditing, set
         </p>
     );
 
-    //channel for direct chat
-    //here I map over all users and keeping the ones where the id is not equal to client id which is basically just our id.
     const DirectPreview = () => {
         const members = Object.values(channel.state.members).filter(({ user }) => user.id !== client.userID);
     
