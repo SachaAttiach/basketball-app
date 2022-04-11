@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import signinImage from '../assets/signup.jpg';
 
-const cookies = new Cookies();
 
 const initialState = {
     fullName: '',
@@ -22,7 +21,7 @@ const Auth = () => {
     const [isSignup, setIsSignup] = useState(true);
     
     const handleChange = (e) => {
-        
+    setForm({ ...form, [e.target.name]: e.target.value });
     }
 
     //to switch between sign in and sign up
