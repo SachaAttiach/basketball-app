@@ -11,7 +11,7 @@ import './App.css';
 
 const cookies = new Cookies();
 
-const apiKey = process.env.API_KEY
+const apiKey = '772b8cg4ppae'
 
 const authToken = cookies.get("token");
 
