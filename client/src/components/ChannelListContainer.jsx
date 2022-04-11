@@ -5,15 +5,17 @@ import Cookies from 'universal-cookie';
 import FoodIcon from '../assets/food.jpeg'
 import LogoutIcon from '../assets/logout.png'
 
-const SideBar = () => (
+const cookies = new Cookies();
+
+const SideBar = ({ logout }) => (
     <div className="channel-list__sidebar">
         <div className="channel-list__sidebar__icon1">
             <div className="icon1__inner">
-                <img src={FoodIcon} alt="Basketball" width="30" />
+                <img src={FoodIcon} alt="Food" width="30" />
             </div>
         </div>
         <div className="channel-list__sidebar__icon2">
-            <div className="icon1__inner">
+            <div className="icon1__inner" onClick={logout}>
                 <img src={LogoutIcon} alt="Logout" width="30" />
             </div>
         </div>
@@ -28,9 +30,21 @@ const CompanyHeader = () => (
 //stream allows me to get a channel list component out the box, still need to create custom list. 
 const ChannelListContainer = ({ }) => {
 
+    const logout = () => {
+        cookies.remove("token");
+        cookies.remove('userId');
+        cookies.remove('username');
+        cookies.remove('fullName');
+        cookies.remove('avatarURL');
+        cookies.remove('hashedPassword');
+        cookies.remove('phoneNumber');
+
+        window.location.reload();
+    }
+
     return (
         <>
-        <SideBar />
+            <SideBar logout={logout} />
             <div className="channel-list__list__wrapper">
             <CompanyHeader />
             <ChannelSearch />
