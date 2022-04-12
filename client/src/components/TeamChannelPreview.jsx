@@ -4,7 +4,7 @@ import { Context } from '../Context';
 
 const TeamChannelPreview = ({ setActiveChannel, setToggleContainer, channel, type }) => {
     const { channel: activeChannel, client } = useChatContext();
-        const { setIsCreating, setIsEditing, } = useContext(Context);
+    const { setIsCreating, setIsEditing, } = useContext(Context);
 
     const ChannelPreview = () => (
         <p className="channel-preview__item">
